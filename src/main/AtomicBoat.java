@@ -10,6 +10,28 @@ public class AtomicBoat {
         this.oil = oil;
     }
 
+    public boolean isEngineStarted() {
+        return atomicBoatEngine.isStarted;
+    }
+
+    public void startEngine() {
+        atomicBoatEngine.turnOn();
+    }
+
+    public void stopEngine() {
+        atomicBoatEngine.turnOff();
+    }
+
+    public String go(int miles) throws UnsupportedOperationException {
+        return atomicBoatEngine.start(miles);
+    }
+
+    public static void main(String[] args) {
+        AtomicBoat atomicBoat = new AtomicBoat(100);
+        atomicBoat.startEngine();
+        atomicBoat.go(5);
+    }
+
     private class AtomicBoatEngine {
 
         private boolean isStarted = false;
@@ -32,33 +54,12 @@ public class AtomicBoat {
                     miles--;
                     way.append("we are going, ");
                 }
-                if (oil <= 0)
+                if (oil <= 0) {
                     way.append("oil is over");
+                }
                 return way.toString();
             }
         }
-    }
-
-    public boolean isEngineStarted() {
-        return atomicBoatEngine.isStarted;
-    }
-
-    public void startEngine() {
-        atomicBoatEngine.turnOn();
-    }
-
-    public void stopEngine() {
-        atomicBoatEngine.turnOff();
-    }
-
-    public String go(int miles) throws UnsupportedOperationException {
-        return atomicBoatEngine.start(miles);
-    }
-
-    public static void main(String[] args) {
-        AtomicBoat atomicBoat = new AtomicBoat(100);
-        atomicBoat.startEngine();
-        atomicBoat.go(5);
     }
 
 }
